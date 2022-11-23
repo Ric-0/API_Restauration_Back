@@ -123,7 +123,6 @@ var ControllerPlats = /** @class */ (function () {
                         verif = _a.sent();
                         if (!verif) return [3 /*break*/, 5];
                         type = req.params.type;
-                        console.log(req.headers);
                         if (!(type !== null)) return [3 /*break*/, 3];
                         return [4 /*yield*/, plats_1.Plats.getPlatsByType(type)];
                     case 2:
@@ -154,7 +153,6 @@ var ControllerPlats = /** @class */ (function () {
                     case 1:
                         verif = _a.sent();
                         if (!verif) return [3 /*break*/, 5];
-                        console.log(typeof req.body.aliments);
                         if (typeof req.body.aliments[0] === 'string') {
                             listeAliments_1 = [];
                             oneAliment_1 = {
@@ -162,16 +160,13 @@ var ControllerPlats = /** @class */ (function () {
                                 quantite: 0
                             };
                             req.body.aliments.map(function (aliment) {
-                                console.log(aliment);
                                 oneAliment_1.quantite = 1;
                                 oneAliment_1.nom = aliment;
                                 listeAliments_1.push(oneAliment_1);
                             });
                             req.body.aliments = listeAliments_1;
-                            console.log(req.body);
                         }
                         body = req.body;
-                        console.log(body);
                         if (!(body !== null)) return [3 /*break*/, 3];
                         return [4 /*yield*/, plats_1.Plats.insertPlat(req.body)];
                     case 2:

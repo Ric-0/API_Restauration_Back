@@ -41,7 +41,6 @@ export class ControllerPlats{
         let verif = await ControllerTokens.verifToken(req.headers.token)
         if(verif){
             let type:string = req.params.type
-            console.log(req.headers);
                     
             if(type !== null){
                 let listePlats = await Plats.getPlatsByType(type)
@@ -58,9 +57,7 @@ export class ControllerPlats{
     } 
     public static async insertPlat(req,res){
         let verif = await ControllerTokens.verifToken(req.headers.token)
-        if(verif){
-            console.log(typeof req.body.aliments);
-            
+        if(verif){            
             if(typeof req.body.aliments[0] === 'string'){
                 
                 let listeAliments = []
@@ -69,17 +66,14 @@ export class ControllerPlats{
                     quantite: 0
                 }
                 req.body.aliments.map((aliment) => {
-                    console.log(aliment);
                     
                     oneAliment.quantite = 1
                     oneAliment.nom = aliment
                     listeAliments.push(oneAliment)
                 })
                 req.body.aliments = listeAliments
-                console.log(req.body);
             }
             let body:{nom:string,type:string,aliments:[{nom:string,quantite:number}],prix:number} = req.body
-            console.log(body);
             
             if(body !== null){
                 await Plats.insertPlat(req.body);

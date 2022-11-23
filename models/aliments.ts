@@ -31,7 +31,6 @@ export class Aliments{
             quantite: body.quantite,
             date: new Date()
         });
-        console.log(aliment);
         
         return await aliment.save()
     }
