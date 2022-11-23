@@ -79,6 +79,22 @@ var ControllerTokens = /** @class */ (function () {
             });
         });
     };
+    ControllerTokens.verifToken = function (token) {
+        return __awaiter(this, void 0, void 0, function () {
+            var tokenBdd;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, tokens_1.Tokens.getOneToken()];
+                    case 1:
+                        tokenBdd = _a.sent();
+                        if (token == tokenBdd[0].valeur) {
+                            return [2 /*return*/, true];
+                        }
+                        return [2 /*return*/, false];
+                }
+            });
+        });
+    };
     return ControllerTokens;
 }());
 exports.ControllerTokens = ControllerTokens;

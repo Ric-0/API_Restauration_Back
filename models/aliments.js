@@ -42,7 +42,7 @@ var mongoose = require('mongoose');
 var alimentSchema = new mongoose_1.Schema({
     nom: String,
     type: String,
-    quantite: String,
+    quantite: Number,
     date: {
         type: Date,
         default: Date.now
@@ -94,6 +94,7 @@ var Aliments = /** @class */ (function () {
                             quantite: body.quantite,
                             date: new Date()
                         });
+                        console.log(aliment);
                         return [4 /*yield*/, aliment.save()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }

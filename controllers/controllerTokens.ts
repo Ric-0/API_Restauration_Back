@@ -18,4 +18,11 @@ export class ControllerTokens{
             res.send()
         }
     }
+    public static async verifToken(token){
+        let tokenBdd = await Tokens.getOneToken()        
+        if(token == tokenBdd[0].valeur){
+            return true
+        }
+        return false
+    }
 }

@@ -38,136 +38,186 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ControllerAliments = void 0;
 var aliments_1 = require("./../models/aliments");
+var controllerTokens_1 = require("./controllerTokens");
 var ControllerAliments = /** @class */ (function () {
     function ControllerAliments() {
     }
     ControllerAliments.getAliments = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var listeAliments;
+            var verif, listeAliments;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, aliments_1.Aliments.getAllAliments()];
+                    case 0: return [4 /*yield*/, controllerTokens_1.ControllerTokens.verifToken(req.headers.token)];
                     case 1:
+                        verif = _a.sent();
+                        if (!verif) return [3 /*break*/, 3];
+                        return [4 /*yield*/, aliments_1.Aliments.getAllAliments()];
+                    case 2:
                         listeAliments = _a.sent();
                         res.status(200);
                         res.send(listeAliments);
-                        return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 3:
+                        res.status(401);
+                        res.send();
+                        _a.label = 4;
+                    case 4: return [2 /*return*/];
                 }
             });
         });
     };
     ControllerAliments.getAlimentById = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, aliments;
+            var verif, id, aliments;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        id = req.params.id;
-                        if (!(id !== null)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, aliments_1.Aliments.getOneAliment(req.params.id)];
+                    case 0: return [4 /*yield*/, controllerTokens_1.ControllerTokens.verifToken(req.headers.token)];
                     case 1:
+                        verif = _a.sent();
+                        if (!verif) return [3 /*break*/, 5];
+                        id = req.params.id;
+                        if (!(id !== null)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, aliments_1.Aliments.getOneAliment(req.params.id)];
+                    case 2:
                         aliments = _a.sent();
                         res.status(200);
                         res.send(aliments);
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         res.status(400);
                         res.send();
-                        _a.label = 3;
-                    case 3: return [2 /*return*/];
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        res.status(401);
+                        res.send();
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
                 }
             });
         });
     };
     ControllerAliments.getAlimentsByType = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var type, listeAliments;
+            var verif, type, listeAliments;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        type = req.params.type;
-                        if (!(type !== null)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, aliments_1.Aliments.getAlimentsByType(req.params.type)];
+                    case 0: return [4 /*yield*/, controllerTokens_1.ControllerTokens.verifToken(req.headers.token)];
                     case 1:
+                        verif = _a.sent();
+                        if (!verif) return [3 /*break*/, 5];
+                        type = req.params.type;
+                        if (!(type !== null)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, aliments_1.Aliments.getAlimentsByType(req.params.type)];
+                    case 2:
                         listeAliments = _a.sent();
                         res.status(200);
                         res.send(listeAliments);
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         res.status(400);
                         res.send();
-                        _a.label = 3;
-                    case 3: return [2 /*return*/];
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        res.status(401);
+                        res.send();
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
                 }
             });
         });
     };
     ControllerAliments.insertAliment = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var body;
+            var verif, body;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        body = req.body;
-                        if (!(body !== null)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, aliments_1.Aliments.insertAliment(body)];
+                    case 0: return [4 /*yield*/, controllerTokens_1.ControllerTokens.verifToken(req.headers.token)];
                     case 1:
+                        verif = _a.sent();
+                        if (!verif) return [3 /*break*/, 5];
+                        body = req.body;
+                        if (!(body !== null)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, aliments_1.Aliments.insertAliment(body)];
+                    case 2:
                         _a.sent();
                         res.status(201);
                         res.send();
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         res.status(400);
                         res.send();
-                        _a.label = 3;
-                    case 3: return [2 /*return*/];
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        res.status(401);
+                        res.send();
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
                 }
             });
         });
     };
     ControllerAliments.updateAliment = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, body;
+            var verif, id, body;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
+                    case 0: return [4 /*yield*/, controllerTokens_1.ControllerTokens.verifToken(req.headers.token)];
+                    case 1:
+                        verif = _a.sent();
+                        if (!verif) return [3 /*break*/, 5];
                         id = req.params.id;
                         body = req.body;
-                        if (!(id !== null && body !== null)) return [3 /*break*/, 2];
+                        if (!(id !== null && body !== null)) return [3 /*break*/, 3];
                         return [4 /*yield*/, aliments_1.Aliments.updateAliment(id, body)];
-                    case 1:
+                    case 2:
                         _a.sent();
                         res.status(204);
                         res.send();
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         res.status(400);
                         res.send();
-                        _a.label = 3;
-                    case 3: return [2 /*return*/];
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        res.status(401);
+                        res.send();
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
                 }
             });
         });
     };
     ControllerAliments.deleteAliment = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var id;
+            var verif, id;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        id = req.params.id;
-                        if (!(id !== null)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, aliments_1.Aliments.deleteAliment(req.params.id)];
+                    case 0: return [4 /*yield*/, controllerTokens_1.ControllerTokens.verifToken(req.headers.token)];
                     case 1:
+                        verif = _a.sent();
+                        if (!verif) return [3 /*break*/, 5];
+                        id = req.params.id;
+                        if (!(id !== null)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, aliments_1.Aliments.deleteAliment(req.params.id)];
+                    case 2:
                         _a.sent();
                         res.status(204);
                         res.send();
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         res.status(400);
                         res.send();
-                        _a.label = 3;
-                    case 3: return [2 /*return*/];
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        res.status(401);
+                        res.send();
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
                 }
             });
         });

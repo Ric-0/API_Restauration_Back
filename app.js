@@ -142,13 +142,17 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  *         aliments: [{_id: 6356835a99278b94024a2795, nom: Navet, quantite: 1}]
  *         prix: 5
  */
-app.get('/', function (req, res) { return res.send('🏠'); });
 /**
  * @swagger
  * /aliments:
  *   get:
  *     summary: Retourne la liste des aliments
  *     tags: [Aliment]
+ *     parameters:
+ *     - in: header
+ *       name: token
+ *       description: Ajouter le token de l'API
+ *       required: true
  *     responses:
  *       200:
  *         description: La liste des aliments
@@ -172,6 +176,10 @@ app.get('/aliments', function (req, res) { return controllerAliments_1.Controlle
  *         description: id de l'aliment
  *         schema:
  *           type: String
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     responses:
  *       200:
  *         description: L'aliment correspondant a l'id
@@ -195,6 +203,10 @@ app.get('/aliments/:id', function (req, res) { return controllerAliments_1.Contr
  *         description: type de(s) aliment(s)
  *         schema:
  *           type: String
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     responses:
  *       200:
  *         description: Liste des aliments avec le type donne
@@ -214,6 +226,11 @@ app.get('/aliments/type/:type', function (req, res) { return controllerAliments_
  *   post:
  *     summary: Creation d'un aliment
  *     tags: [Aliment]
+ *     parameters:
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     requestBody:
  *       required: true
  *       content:
@@ -244,6 +261,10 @@ app.post("/aliments", function (req, res) { return controllerAliments_1.Controll
  *           type: string
  *         required: true
  *         description: Id de l'aliment
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     requestBody:
  *       required: true
  *       content:
@@ -277,6 +298,10 @@ app.put('/aliments/:id', function (req, res) { return controllerAliments_1.Contr
  *          required: true
  *          schema:
  *            type: string
+ *        - in: header
+ *          name: token
+ *          description: Ajouter le token de l'API
+ *          required: true
  *      responses:
  *        204:
  *          description: L'aliment a ete suprime
@@ -291,6 +316,11 @@ app.delete('/aliments/:id', function (req, res) { return controllerAliments_1.Co
  *   get:
  *     summary: Retourne la liste des plats
  *     tags: [Plat]
+ *     parameters:
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     responses:
  *       200:
  *         description: La liste des plats
@@ -308,6 +338,11 @@ app.get('/plats', function (req, res) { return controllerPlats_1.ControllerPlats
  *   get:
  *     summary: Retourne la liste des plats par type
  *     tags: [Plat]
+ *     parameters:
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     responses:
  *       200:
  *         description: La liste des plats par type
@@ -331,6 +366,10 @@ app.get('/plats/type/', function (req, res) { return controllerPlats_1.Controlle
  *         description: id du plat
  *         schema:
  *           type: String
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     responses:
  *       200:
  *         description: Le plat correspondant a l'id
@@ -354,6 +393,10 @@ app.get('/plats/:id', function (req, res) { return controllerPlats_1.ControllerP
  *         description: type du/des plat(s)
  *         schema:
  *           type: String
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     responses:
  *       200:
  *         description: Le(s) plat(s) correspondant au type
@@ -371,6 +414,11 @@ app.get('/plats/type/:type', function (req, res) { return controllerPlats_1.Cont
  *   post:
  *     summary: Creation d'un plat
  *     tags: [Plat]
+ *     parameters:
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     requestBody:
  *       required: true
  *       content:
@@ -401,6 +449,10 @@ app.post('/plats', function (req, res) { return controllerPlats_1.ControllerPlat
  *           type: string
  *         required: true
  *         description: Id du plat
+ *       - in: header
+ *         name: token
+ *         description: Ajouter le token de l'API
+ *         required: true
  *     requestBody:
  *       required: true
  *       content:
@@ -434,6 +486,10 @@ app.put('/plats/:id', function (req, res) { return controllerPlats_1.ControllerP
  *          required: true
  *          schema:
  *            type: string
+ *        - in: header
+ *          name: token
+ *          description: Ajouter le token de l'API
+ *          required: true
  *      responses:
  *        204:
  *          description: Le plat a ete suprime
@@ -442,7 +498,30 @@ app.put('/plats/:id', function (req, res) { return controllerPlats_1.ControllerP
  *
  */
 app.delete('/plats/:id', function (req, res) { return controllerPlats_1.ControllerPlats.deletePlat(req, res); });
-app.options('/plats/type/', function (req, res) { return console.log('option'); });
+/**
+ * @swagger
+ *  /plats/commande/{id}:
+ *    get:
+ *      summary: Commander un plat
+ *      tags: [Plat]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          description: Id du plat
+ *          required: true
+ *          schema:
+ *            type: string
+ *        - in: header
+ *          name: token
+ *          description: Ajouter le token de l'API
+ *          required: true
+ *      responses:
+ *        204:
+ *          description: Le plat a ete commande
+ *        404:
+ *          description: Le plat n'a pas ete trouve
+ *
+ */
 app.get('/plats/commande/:id', function (req, res) { return controllerPlats_1.ControllerPlats.commanderPlat(req, res); });
 app.get('/token', function (req, res) { return controllerTokens_1.ControllerTokens.getToken(req, res); });
 app.post('/token', function (req, res) { return controllerTokens_1.ControllerTokens.insertToken(req, res); });

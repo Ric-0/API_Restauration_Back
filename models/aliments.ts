@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const alimentSchema= new Schema({
     nom: String, // String is shorthandfor {type: String}
     type: String,
-    quantite: String,
+    quantite: Number,
     date: { 
         type: Date, 
         default: Date.now
@@ -12,6 +12,9 @@ const alimentSchema= new Schema({
 });
 const AlimentModel = mongoose.model('aliments', alimentSchema);
 export class Aliments{
+    nom: string;
+    quantite: number
+    _id: any;
     public static async getAllAliments():Promise<Aliments[]>{
         return await AlimentModel.find()
     }
@@ -23,11 +26,13 @@ export class Aliments{
     }
     public static async insertAliment(body:{nom:string,type:string,quantite:number}){
         const aliment= new AlimentModel({
-            nom:body.nom,
-            type:body.type,
-            quantite:body.quantite,
-            date:new Date()
+            nom: body.nom,
+            type: body.type,
+            quantite: body.quantite,
+            date: new Date()
         });
+        console.log(aliment);
+        
         return await aliment.save()
     }
     public static async updateAliment(id, body){

@@ -24,7 +24,7 @@ export class Plats{
     public static async getPlatsByType(type){
         return await PlatModel.find({type:type})
     }
-    public static async insertPlat(body:{nom:string,type:string,aliments:[{nom:string,quantite:string}],prix:number}){
+    public static async insertPlat(body:{nom:string,type:string,aliments:[{nom:string,quantite:number}],prix:number}){
         const plat = new PlatModel({
             nom:body.nom,
             type:body.type,
